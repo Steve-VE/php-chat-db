@@ -1,0 +1,19 @@
+
+$color-one: rgba(255, 189, 103, 0.5);
+$color-two: rgba(103, 194, 255, 0.5);
+$color-three: rgba(103, 255, 154, 0.5);
+
+@font-face{
+    font-family: 'SourceSansPro';
+    src: url('/assets/fonts/SourceSansPro-Regular.otf') format('truetype');
+}
+
+main{
+    position: relative;
+    width: 50%;
+    height: 80%;
+    margin: 5% auto 0 auto;
+
+    border: 1px solid black;
+    font-family: 'SourceSansPro', sans-serif;
+}

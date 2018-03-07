@@ -1,0 +1,26 @@
+
+
+header{
+    padding: 12px;
+
+    background-color: rgb(128, 128, 128);
+
+    text-align: center;
+    font-family: 'SourceSansPro', sans-serif;
+
+    ul{
+        li{
+            display: inline;
+        }
+    }
+
+    a{
+        text-decoration: none;
+        color: white;
+
+        :visited{
+            text-decoration: none;
+            color: white;
+        }
+    }
+}
