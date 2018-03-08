@@ -1,11 +1,12 @@
 <?php
+    require "php/data.php";
     require "php/functions.php";
 
     session_start();
 
     // Connexion à la base de données
     try{
-        $database = new PDO("mysql:host=localhost;dbname=chat", "root", "");
+        $database = new PDO("mysql:host=localhost;dbname=chat", $db['user'], $db['password']);
     }
     catch(PDOEXception $e){
         die($e->getMessage());
@@ -13,9 +14,15 @@
 
     // Gère l'affichage des pages
     $current_page = "login"; // Page à afficher par défaut
-    $valid_pages = ["login", "register", "logout"]; // Nom des pages autorisées
+    $valid_pages = ["login", "register", "logout", "member"]; // Nom des pages autorisées
     if(isset($_GET['page']) && in_array($_GET['page'], $valid_pages)){
         $current_page = $_GET['page'];
+    }
+
+    // Gère les différentes actions
+    $allowed_action = ["delete_message"];
+    if( isset($_GET['action']) && in_array($_GET['action'], $allowed_action) ){
+        $current_action = $_GET['action'];
     }
 
     // Gère la déconnexion
@@ -68,24 +75,51 @@
                         // ... on définit les variables de session
                         $_SESSION['user']['id'] = $user_data['id'];
                         $_SESSION['user']['name'] = $user_data['name'];
+                        $_SESSION['user']['permission'] = $user_data['permission'];
+                        $_SESSION['user']['last_message'] = "";
                     }
                 }
             }
         }
     }
     else{ // Si l'utilisateur est connecté...
+
+        // S'il y a un message à envoyer sur le tchat
         if(isset($_POST['message-submit'])){
             $message_to_send = get_value("message_box");
 
-            if($message_to_send != null){
+            if($message_to_send != null && $message_to_send != $_SESSION['user']['last_message'] ){
                 date_default_timezone_set('Europe/Amsterdam');
                 $current_date = date("Y-m-d H:i:s");
-                $rqst_sending_message = $database -> prepare('INSERT INTO `messages`(`text`, `user_id`, `date`) VALUES (:text, :user_id, :date)');
+                $rqst_sending_message = $database -> prepare('
+                    INSERT INTO `messages`(`text`, `user_id`, `date`) 
+                    VALUES (:text, :user_id, :date)
+                ');
                 $rqst_sending_message -> execute( array(
                     ':text' => $message_to_send,
                     ':user_id' => $_SESSION['user']['id'],
                     ':date' => $current_date
                 ));
+                $_SESSION['user']['last_message'] = $message_to_send;
+            }
+        }
+
+        // S'il y a une action à effectuer
+        if(isset($current_action)){
+            // Demande de suppression d'un message
+            if($current_action == "delete_message" && $_SESSION['user']['permission'] > 0){
+                if(isset($_GET['id'])){
+                    $message_to_delete = intval($_GET['id']);
+
+                    if($message_to_delete >= 0){
+                        $request = $database -> prepare('
+                            DELETE FROM messages
+                            WHERE id = ?
+                        ');
+                        $request -> execute(array($message_to_delete));
+                        header('Location:?action=done');
+                    }
+                }
             }
         }
     }
@@ -134,18 +168,24 @@
     </header>
 
     <main>
-        <div id="chat">
-            <iframe src="php/webparts/chat.php" 
+        <?php 
+            if($current_page == "member" && isset($_SESSION['user'])){
+                include("php/webparts/member_page.php");
+            }
+            else{
+                echo '<div id="chat">';
+                echo '<iframe src="php/webparts/chat.php" 
                 scrolling="no" frameborder="0" 
                 width="100%" height="auto">
-            </iframe>
-            <?php 
+                </iframe>
+                ';
                 // require("php/webparts/chat.php");
                 if(isset($_SESSION['user'])){
                     include("php/webparts/message_box.php"); 
                 }
-            ?>
-        </div>
+                echo '</div>';
+            }
+        ?>
     </main>
 
     <footer>

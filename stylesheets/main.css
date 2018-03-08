@@ -18,7 +18,7 @@ main {
   position: relative;
   width: 50%;
   height: 80%;
-  margin: 5% auto 0 auto;
+  margin: 2% auto 0 auto;
   border: 1px solid black;
   font-family: 'SourceSansPro', sans-serif;
 }
@@ -132,8 +132,25 @@ header a :visited {
   box-shadow: -2px 2px 1px 1px rgba(0, 0, 0, 0.1);
 }
 
-.items-collection .message p:last-child {
-  border-radius: 0 16px 0 0;
+.items-collection .message p:hover {
+  background-color: white;
+}
+
+.items-collection .message a.delete {
+  display: inline-block;
+  position: absolute;
+  right: 0;
+  padding: 0 4px 2px;
+  margin-right: 3px;
+  border: 1px solid white;
+  color: white;
+  text-decoration: none;
+}
+
+.items-collection .message a.delete:hover {
+  color: red;
+  border-color: red;
+  background-color: white;
 }
 
 .items-collection .message-header {
@@ -154,6 +171,11 @@ header a :visited {
 .items-collection .message-header a:hover {
   color: white;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8), -1px -1px 2px rgba(0, 0, 0, 0.5);
+}
+
+img.emoticon {
+  position: relative;
+  top: 2px;
 }
 
 footer {
