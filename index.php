@@ -6,7 +6,7 @@
 
     // Connexion à la base de données
     try{
-        $database = new PDO("mysql:host=localhost;dbname=chat", $db['user'], $db['password']);
+        $database = new PDO("mysql:host=localhost;dbname=".$db['name'], $db['user'], $db['password']);
     }
     catch(PDOEXception $e){
         die($e->getMessage());
@@ -51,7 +51,7 @@
                     $request->execute( array(
                         ':name' => $user['name'],
                         ':email' => $user['email'],
-                        ':password' => password_hash($user['password'], PASSWORD_ARGON2I)
+                        ':password' => password_hash($user['password'], $hash_type)
                     ) );
                     // echo "Inscription effectué. Bienvenue ". $user['name'] ."!";
                     $current_page = "login";

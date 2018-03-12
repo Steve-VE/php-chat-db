@@ -9,18 +9,45 @@ header{
     font-family: 'SourceSansPro', sans-serif;
 
     ul{
+        margin-bottom: 12px;
+
         li{
+            margin: 0 8px;
             display: inline;
+        }
+    }
+
+    label{
+        margin: 0 12px;
+    }
+
+    input[type=submit]{
+        padding: 8px;
+        border: none;
+
+        background-color: rgb(68, 68, 68);
+        color: white;
+        font-weight: bold;
+        text-transform: uppercase;
+
+        &:hover{
+            padding: 6px;
+            background-color: gray;
+            border: 2px solid rgb(68, 68, 68);
         }
     }
 
     a{
         text-decoration: none;
-        color: white;
+        color: rgb(214, 214, 214);
+
+        &:hover{
+            color: white;
+        }
 
         :visited{
             text-decoration: none;
-            color: white;
+            color: rgb(214, 214, 214);
         }
     }
 }

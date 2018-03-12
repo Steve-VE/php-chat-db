@@ -5,6 +5,7 @@ function convert_emoticon($text){
     $emoticon_ext = ".gif";
 
     $convert_from = [
+        ':skull:',
         ':)',
         ':D',
         ':|',
@@ -12,11 +13,11 @@ function convert_emoticon($text){
         ':(',
         ':s',
         ':o',
-        '8)',
-        ':skull:'
+        '8)'
     ];
 
     $convert_to = [
+        'skull',
         'smile',
         'happy',
         'neutral',
@@ -24,8 +25,7 @@ function convert_emoticon($text){
         'sad',
         'confuse',
         'shocked',
-        'cool',
-        'skull'
+        'cool'
     ];
 
     foreach($convert_to as &$line){

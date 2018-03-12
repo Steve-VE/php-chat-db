@@ -5,7 +5,7 @@
     session_start();
     // Connexion à la base de données
     try{
-        $database = new PDO("mysql:host=localhost;dbname=chat", $db['user'], $db['password']);
+        $database = new PDO("mysql:host=localhost;dbname=".$db['name'], $db['user'], $db['password']);
     }
     catch(PDOEXception $e){
         die($e->getMessage());
@@ -32,7 +32,7 @@
         //     ORDER BY messages.id
         // ');
         $result = $database->query('
-            SELECT messages.id, messages.date, messages.text, messages.user_id, users.name
+            SELECT messages.id, messages.date, messages.text, messages.user_id, users.name, users.avatar
             FROM messages 
             JOIN users
             ON messages.user_id = users.id
@@ -55,7 +55,10 @@
 
                     echo '<div class="message-header">';
                         echo '<a href="/?page=member&id='. $message['user_id'] .'">';
-                            echo '<strong>'. $message['name'] .'</strong>';
+                        if($message['avatar'] != null && strlen($message['avatar']) > 0){
+                            echo '<img class="avatar" src="'. $message['avatar'] .'" alt="avatar" />';
+                        }
+                        echo '<strong>'. $message['name'] .'</strong>';
                         echo '</a>';
                     echo '</div>';
             }

@@ -23,6 +23,11 @@ main {
   font-family: 'SourceSansPro', sans-serif;
 }
 
+.avatar {
+  display: inline-block;
+  width: 64px;
+}
+
 header {
   padding: 12px;
   background-color: gray;
@@ -30,18 +35,46 @@ header {
   font-family: 'SourceSansPro', sans-serif;
 }
 
+header ul {
+  margin-bottom: 12px;
+}
+
 header ul li {
+  margin: 0 8px;
   display: inline;
+}
+
+header label {
+  margin: 0 12px;
+}
+
+header input[type=submit] {
+  padding: 8px;
+  border: none;
+  background-color: #444444;
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+header input[type=submit]:hover {
+  padding: 6px;
+  background-color: gray;
+  border: 2px solid #444444;
 }
 
 header a {
   text-decoration: none;
+  color: #d6d6d6;
+}
+
+header a:hover {
   color: white;
 }
 
 header a :visited {
   text-decoration: none;
-  color: white;
+  color: #d6d6d6;
 }
 
 #chat {
@@ -173,6 +206,18 @@ header a :visited {
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8), -1px -1px 2px rgba(0, 0, 0, 0.5);
 }
 
+.items-collection .message-header a:hover .avatar {
+  border: 1px solid white;
+}
+
+.items-collection .message-header .avatar {
+  width: 32px;
+  margin-right: 8px;
+  margin-left: 4px;
+  border-radius: 8px;
+  border: 1px solid black;
+}
+
 img.emoticon {
   position: relative;
   top: 2px;
@@ -184,5 +229,48 @@ footer {
   position: absolute;
   bottom: 0;
   background-color: rgba(255, 189, 103, 0.5);
+}
+
+#member-page {
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
+  padding: 24px;
+}
+
+#member-page header {
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 0;
+  padding-bottom: 12px;
+  background: none;
+  border-bottom: 1px solid black;
+  text-align: left;
+}
+
+#member-page header .avatar {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+}
+
+#member-page h2, #member-page h3 {
+  padding-bottom: 12px;
+}
+
+#member-page section {
+  width: 50%;
+  height: 60vh;
+}
+
+.item h4 {
+  padding: 12px 0;
+}
+
+.item p {
+  padding-left: 12px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid black;
+  border-left: 8px solid rgba(0, 0, 0, 0.3);
 }
 /*# sourceMappingURL=main.css.map */

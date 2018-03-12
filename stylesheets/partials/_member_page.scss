@@ -1,0 +1,48 @@
+
+#member-page{
+    display: flex;
+    // flex-direction: row;
+    flex-wrap: wrap;
+    height: 100%;
+    padding: 24px;
+
+    header{
+        width: 100%;
+        margin-bottom: 12px;
+        padding: 0;
+        padding-bottom: 12px;
+
+        background: none;
+        border-bottom: 1px solid black;
+        text-align: left;
+
+        .avatar{
+            position: absolute;
+            top: 24px;
+            right: 24px;
+        }
+    }
+
+    h2, h3{
+        padding-bottom: 12px;
+    }
+    
+    section{
+        width: 50%;
+        height: 60vh;
+    }
+}
+
+.item{
+
+    h4{
+        padding: 12px 0;
+    }
+    
+    p{
+        padding-left: 12px;
+        padding-bottom: 24px;
+        border-bottom: 1px solid black;
+        border-left: 8px solid rgba(0, 0, 0, 0.3);
+    }
+}
