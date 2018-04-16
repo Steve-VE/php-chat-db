@@ -5,10 +5,7 @@
 
     include $path ."/chat_functions.php";
     include $path ."/data.php";
-
-    // var_dump($db);
-
-    // session_start();
+    
     // Connexion à la base de données
     try{
         $database = new PDO("mysql:host=localhost;dbname=".$db['name'], $db['user'], $db['password']);
