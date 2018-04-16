@@ -1,4 +1,5 @@
 <?php
+    session_start();
     $path = $_SERVER['DOCUMENT_ROOT'];
     $path .= "/php";
 
@@ -32,8 +33,7 @@
 
         if($i == 0 || $message['name'] != $messages_data[$i - 1]['name']){
             echo '<div class="message';
-                if(isset($_SESSION['user']) 
-                && $message['name'] == $_SESSION['user']['name'] ){
+                if(isset($_SESSION['user']) && $message['name'] == $_SESSION['user']['name'] ){
                     echo ' myself'; // Permet de différencier nos messages de ceux des autres utilisateurs
                 }
                 echo '">';
