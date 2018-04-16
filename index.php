@@ -131,8 +131,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
+    
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="stylesheets/main.css">
+    <script src="assets/js/script.js"></script>
 
     <title>Chat</title>
 </head>
@@ -174,15 +176,13 @@
             }
             else{
                 echo '<div id="chat">';
-                echo '<iframe src="php/webparts/chat.php" 
-                scrolling="no" frameborder="0" 
-                width="100%" height="auto">
-                </iframe>
-                ';
-                // require("php/webparts/chat.php");
-                if(isset($_SESSION['user'])){
-                    include("php/webparts/message_box.php"); 
-                }
+                    echo '<div class="items-collection">';
+                    // Le tchat appariatra ici !    
+                    echo '</div>';
+
+                    if(isset($_SESSION['user'])){
+                        include("php/webparts/message_box.php"); 
+                    }
                 echo '</div>';
             }
         ?>
